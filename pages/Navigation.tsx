@@ -2,9 +2,10 @@
 import React, { useState } from 'react';
 import { Search, Bell, Menu, Zap, X, LogOut, Settings, User as UserIcon } from 'lucide-react';
 import { useGlobal } from '../context/GlobalContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navigation: React.FC = () => {
+  const navigate = useNavigate();
   const { searchQuery, setSearchQuery, isAuthenticated, logout } = useGlobal();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<'notifications' | 'account' | null>(null);
@@ -20,7 +21,7 @@ const Navigation: React.FC = () => {
   // Mock Notifications
   const notifications = [
     { id: 1, text: "New perk added in Tech!", time: "2m ago", unread: true },
-    { id: 2, text: "Your 'Winter in Korea' deal expires soon.", time: "1h ago", unread: false },
+    { id: 2, text: "Your 'Winter in Korea' deals expires soon.", time: "1h ago", unread: false },
     { id: 3, text: "Welcome to Perksmania Level 3!", time: "1d ago", unread: false },
   ];
 
@@ -33,7 +34,13 @@ const Navigation: React.FC = () => {
         <div className="relative container mx-auto px-3 mob-s:px-4 mob-l:px-6 lg:px-8 h-16 mob-s:h-20 flex items-center justify-between">
 
           {/* Logo Section */}
-          <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <div
+            className="flex items-center gap-2 group cursor-pointer"
+            onClick={() => {
+              navigate('/');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
             <img src="/assets/images/script blue 02.png" alt="Perksmania Logo" className="h-8 mob-s:h-10 w-auto group-hover:scale-105 transition-transform duration-300" />
           </div>
 
@@ -114,9 +121,9 @@ const Navigation: React.FC = () => {
                   {activeDropdown === 'account' && (
                     <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden animate-float-in p-2">
                       <div className="p-2">
-                        <button className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 text-slate-600 font-medium transition-colors text-sm text-left">
+                        <Link to="/profile" className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 text-slate-600 font-medium transition-colors text-sm text-left">
                           <UserIcon size={16} /> Profile
-                        </button>
+                        </Link>
                         <button className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 text-slate-600 font-medium transition-colors text-sm text-left">
                           <Settings size={16} /> Settings
                         </button>

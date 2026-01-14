@@ -8,6 +8,7 @@ import BentoGrid from './pages/BentoGrid';
 import Footer from './pages/Footer';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Profile from './pages/Profile';
 import { GlobalProvider } from './context/GlobalContext';
 import ToastContainer from './pages/Toast.tsx';
 
@@ -30,6 +31,15 @@ function App() {
             } />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={
+              <>
+                <Navigation />
+                <main>
+                  <Profile />
+                </main>
+                <Footer />
+              </>
+            } />
           </Routes>
           <ToastContainer />
         </div>
