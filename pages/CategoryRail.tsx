@@ -12,15 +12,15 @@ const CategoryRail: React.FC = () => {
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-widest">Browse by Vibe</h2>
           {activeCategory && (
-            <button 
+            <button
               onClick={() => setActiveCategory(null)}
-              className="text-xs font-bold text-brand-blue hover:underline"
+              className="text-xs font-bold text-brand-secondary hover:underline"
             >
               Clear Filter
             </button>
           )}
         </div>
-        
+
         {/* 
             Responsive Layout:
             - Mobile: Horizontal scroll with "bleed" (negative margins) so content touches screen edges.
@@ -33,37 +33,37 @@ const CategoryRail: React.FC = () => {
             md:flex-wrap md:overflow-visible 
             no-scrollbar snap-x md:snap-none
         ">
-          <button 
-              onClick={() => setActiveCategory(null)}
-              className={`
+          <button
+            onClick={() => setActiveCategory(null)}
+            className={`
                 snap-start flex-shrink-0 
                 flex items-center gap-2.5 px-4 py-2.5 md:px-5 md:py-3
                 rounded-full border transition-all duration-200 group font-semibold text-sm whitespace-nowrap
-                ${activeCategory === null 
-                  ? 'bg-brand-blue border-brand-blue text-white shadow-lg shadow-brand-blue/30' 
-                  : 'bg-white border-slate-200 text-slate-700 hover:border-brand-blue hover:text-brand-blue'}
+                ${activeCategory === null
+                ? 'bg-brand-secondary border-brand-secondary text-white shadow-lg shadow-brand-secondary/30'
+                : 'bg-white border-slate-200 text-slate-700 hover:border-brand-secondary hover:text-brand-secondary'}
               `}
-            >
-              All Vibes
-            </button>
+          >
+            All Vibes
+          </button>
 
           {CATEGORIES.map((cat) => (
-            <button 
+            <button
               key={cat.id}
               onClick={() => setActiveCategory(activeCategory === cat.name ? null : cat.name)}
               className={`
                 snap-start flex-shrink-0 
                 flex items-center gap-2.5 px-4 py-2.5 md:px-5 md:py-3
                 rounded-full border transition-all duration-200 group
-                ${activeCategory === cat.name 
-                  ? 'bg-brand-blue border-brand-blue text-white shadow-lg shadow-brand-blue/30' 
-                  : 'bg-white border-slate-200 hover:border-brand-blue hover:bg-brand-blue/5'}
+                ${activeCategory === cat.name
+                  ? 'bg-brand-secondary border-brand-secondary text-white shadow-lg shadow-brand-secondary/30'
+                  : 'bg-white border-slate-200 hover:border-brand-secondary hover:bg-brand-secondary/5'}
               `}
             >
-              <div className={`transition-colors ${activeCategory === cat.name ? 'text-white' : 'text-slate-400 group-hover:text-brand-blue'}`}>
+              <div className={`transition-colors ${activeCategory === cat.name ? 'text-white' : 'text-slate-400 group-hover:text-brand-secondary'}`}>
                 {cat.icon}
               </div>
-              <span className={`font-semibold text-sm whitespace-nowrap ${activeCategory === cat.name ? 'text-white' : 'text-slate-700 group-hover:text-brand-dark'}`}>
+              <span className={`font-semibold text-sm whitespace-nowrap ${activeCategory === cat.name ? 'text-white' : 'text-slate-700 group-hover:text-brand-primary'}`}>
                 {cat.name}
               </span>
             </button>

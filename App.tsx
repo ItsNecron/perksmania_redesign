@@ -1,17 +1,17 @@
 
 import React from 'react';
-import Navigation from './components/Navigation';
-import Hero from './components/Hero';
-import CategoryRail from './components/CategoryRail';
-import BentoGrid from './components/BentoGrid';
-import Footer from './components/Footer';
+import Navigation from './pages/Navigation';
+import Hero from './pages/Hero';
+import CategoryRail from './pages/CategoryRail';
+import BentoGrid from './pages/BentoGrid';
+import Footer from './pages/Footer';
 import { GlobalProvider } from './context/GlobalContext';
-import ToastContainer from './components/Toast.tsx';
+import ToastContainer from './pages/Toast.tsx';
 
 function App() {
   return (
     <GlobalProvider>
-      <div className="min-h-screen text-slate-900 font-sans selection:bg-brand-teal selection:text-white">
+      <div className="min-h-screen text-slate-900 font-sans selection:bg-brand-accent selection:text-white">
         <Navigation />
         <main>
           <Hero />
