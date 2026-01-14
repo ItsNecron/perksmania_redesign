@@ -5,34 +5,41 @@ import { useGlobal } from '../context/GlobalContext';
 
 const CategoryRail: React.FC = () => {
   const { activeCategory, setActiveCategory } = useGlobal();
+  const [isExpanded, setIsExpanded] = React.useState(false);
+
+  const visibleCategories = isExpanded ? CATEGORIES : CATEGORIES.slice(0, 3);
 
   return (
     <section className="py-8 border-b border-slate-100/50">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div className="container mx-auto px-3 mob-s:px-4 mob-l:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-widest">Browse by Vibe</h2>
-          {activeCategory && (
-            <button
-              onClick={() => setActiveCategory(null)}
-              className="text-xs font-bold text-brand-secondary hover:underline"
-            >
-              Clear Filter
-            </button>
-          )}
+          <div className="flex gap-4">
+            {activeCategory && (
+              <button
+                onClick={() => setActiveCategory(null)}
+                className="text-xs font-bold text-brand-secondary hover:underline"
+              >
+                Clear Filter
+              </button>
+            )}
+          </div>
         </div>
 
         {/* 
-            Responsive Layout:
-            - Mobile: Horizontal scroll with "bleed" (negative margins) so content touches screen edges.
-            - Desktop: Wrapped grid layout for easier scanning with mouse.
+            Responsive Layout with "View All" Expansion:
+            - !isExpanded: Horizontal scroll (Mobile S, M, L) showing limited items + View All button.
+            - isExpanded: Wrapped grid (flex-wrap) showing all items.
+            - Desktop: Always expanded/wrapped logic implies we can just use the same logic if checking window width, 
+              but for now consistent behavior across devices (expandable) is cleanest, or we can default expands on desktop.
+              Let's allow user toggle on all screens for consistency.
         */}
-        <div className="
-            flex gap-3 overflow-x-auto pb-4 
-            -mx-4 px-4              /* Mobile Bleed: pulls container to edges, adds internal padding */
-            md:mx-0 md:px-0 md:pb-0 /* Desktop Reset */
-            md:flex-wrap md:overflow-visible 
-            no-scrollbar snap-x md:snap-none
-        ">
+        <div className={`
+            flex gap-3 pb-4 transition-all duration-300
+            ${isExpanded 
+              ? 'flex-wrap overflow-visible' 
+              : 'overflow-x-auto -mx-3 px-3 mob-s:-mx-4 mob-s:px-4 mob-l:-mx-6 mob-l:px-6 md:mx-0 md:px-0 md:pb-0 no-scrollbar snap-x md:snap-none'}
+        `}>
           <button
             onClick={() => setActiveCategory(null)}
             className={`
@@ -47,7 +54,7 @@ const CategoryRail: React.FC = () => {
             All Vibes
           </button>
 
-          {CATEGORIES.map((cat) => (
+          {visibleCategories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(activeCategory === cat.name ? null : cat.name)}
@@ -68,6 +75,20 @@ const CategoryRail: React.FC = () => {
               </span>
             </button>
           ))}
+
+          {/* View All / Show Less Toggle Button */}
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={`
+              snap-start flex-shrink-0 
+              flex items-center justify-center px-5 py-2.5 md:px-6 md:py-3
+              rounded-full border border-slate-200 border-dashed 
+              bg-slate-50 text-slate-500 font-bold text-sm whitespace-nowrap
+              hover:bg-white hover:border-brand-secondary hover:text-brand-secondary transition-all
+            `}
+          >
+            {isExpanded ? 'Show Less' : 'View All'}
+          </button>
         </div>
       </div>
     </section>

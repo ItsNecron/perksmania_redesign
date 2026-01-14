@@ -18,9 +18,9 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="pt-32 pb-8 px-4 lg:px-8">
+    <section className="pt-24 mob-m:pt-28 lg:pt-32 pb-8 px-4 lg:px-8">
       <div className="container mx-auto">
-        <div className="relative rounded-[2.5rem] overflow-hidden min-h-[400px] flex items-center p-8 lg:p-16">
+        <div className="relative rounded-[1.5rem] mob-m:rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden min-h-[400px] flex items-center p-6 mob-m:p-8 lg:p-16">
 
           {/* Dynamic Background Mesh */}
           <div className="absolute inset-0 bg-[#0f172a]">
@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
               <span className="text-sm font-semibold tracking-wide">Daily drops refreshed 2 hrs ago</span>
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
+            <h1 className="text-3xl mob-m:text-4xl mob-l:text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
               Unlock the <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-blue-200">VIP Lifestyle</span> for less.
             </h1>
 

@@ -8,8 +8,8 @@ const Footer: React.FC = () => {
       <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-secondary via-brand-accent to-purple-500"></div>
       <div className="absolute -top-20 -right-20 w-96 h-96 bg-brand-secondary/20 rounded-full blur-[100px]"></div>
 
-      <div className="container mx-auto px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <div className="container mx-auto px-4 mob-l:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
             <div className="mb-6">
               <img src="/assets/images/script blue 02.png" alt="Perksmania" className="h-14 w-auto" />

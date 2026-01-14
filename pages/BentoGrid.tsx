@@ -103,7 +103,7 @@ const BentoGrid: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Special Banner Card (Only show if no search/filter to avoid confusion) */}
               {!activeCategory && !searchQuery && (
-                <div className="rounded-3xl bg-gradient-to-br from-purple-600 to-brand-secondary p-8 text-white flex flex-col justify-center items-start shadow-xl">
+                <div className="rounded-3xl bg-gradient-to-br from-purple-600 to-brand-secondary p-5 mob-m:p-6 lg:p-8 text-white flex flex-col justify-center items-start shadow-xl">
                   <h3 className="text-2xl font-bold mb-2">Subscribe & Save</h3>
                   <p className="text-white/80 mb-6 text-sm">Join the VIP list to get early access to drops.</p>
                   <form onSubmit={handleSubscribe} className="w-full bg-white/20 p-1 rounded-xl flex">

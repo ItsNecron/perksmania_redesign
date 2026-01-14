@@ -29,11 +29,11 @@ const Navigation: React.FC = () => {
         {/* Glassmorphism Background */}
         <div className="absolute inset-0 bg-brand-primary border-b border-white/10 shadow-sm"></div>
 
-        <div className="relative container mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
+        <div className="relative container mx-auto px-3 mob-s:px-4 mob-l:px-6 lg:px-8 h-16 mob-s:h-20 flex items-center justify-between">
 
           {/* Logo Section */}
           <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img src="/assets/images/script blue 02.png" alt="Perksmania Logo" className="h-10 w-auto group-hover:scale-105 transition-transform duration-300" />
+            <img src="/assets/images/script blue 02.png" alt="Perksmania Logo" className="h-8 mob-s:h-10 w-auto group-hover:scale-105 transition-transform duration-300" />
           </div>
 
           {/* Desktop Search - The "Pill" */}
@@ -51,7 +51,7 @@ const Navigation: React.FC = () => {
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3 sm:gap-6">
+          <div className="flex items-center gap-2 mob-s:gap-3 mob-m:gap-4 sm:gap-6">
 
             {/* Gamification Badge */}
             <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full border border-white/10 cursor-pointer hover:bg-white/20 transition-all">
@@ -76,7 +76,13 @@ const Navigation: React.FC = () => {
 
               {/* Notification Dropdown */}
               {activeDropdown === 'notifications' && (
-                <div className="absolute top-full right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden animate-float-in">
+                <div className="
+                  fixed left-4 right-4 top-20 w-auto
+                  mob-m:w-80 mob-m:right-4 mob-m:left-auto mob-m:top-20 mob-m:fixed
+                  lg:absolute lg:top-full lg:right-0 lg:mt-2 lg:w-80
+                  bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden animate-float-in
+                  z-[60]
+                ">
                   <div className="p-4 border-b border-slate-50 flex justify-between items-center">
                     <h3 className="font-bold text-slate-800">Notifications</h3>
                     <span className="text-xs font-bold text-brand-secondary cursor-pointer">Mark all read</span>
@@ -107,7 +113,13 @@ const Navigation: React.FC = () => {
 
               {/* Account Dropdown */}
               {activeDropdown === 'account' && (
-                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden animate-float-in p-2">
+                <div className="
+                  fixed left-4 right-4 top-20 w-auto
+                  mob-m:w-64 mob-m:right-4 mob-m:left-auto mob-m:top-20 mob-m:fixed
+                  lg:absolute lg:top-full lg:right-0 lg:mt-2 lg:w-56
+                  bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden animate-float-in p-2
+                  z-[60]
+                ">
                   <div className="p-2">
                     <button className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 text-slate-600 font-medium transition-colors text-sm text-left">
                       <UserIcon size={16} /> Profile
@@ -135,41 +147,39 @@ const Navigation: React.FC = () => {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[60] bg-white">
-          <div className="p-4 flex justify-between items-center border-b border-slate-100">
+      <div className={`fixed inset-0 z-[60] bg-brand-primary transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <div className="p-4 flex justify-between items-center border-b border-white/10">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 flex items-center justify-center">
-                <img src="/assets/images/script blue 02.png" alt="Logo" className="w-full h-full object-contain" />
+                <img src="/assets/images/script_teal.png" alt="Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-bold text-xl">Menu</span>
+              <span className="font-bold text-xl text-white">Menu</span>
             </div>
-            <button onClick={() => setIsMenuOpen(false)} className="p-2 text-slate-500 hover:bg-slate-100 rounded-full">
+            <button onClick={() => setIsMenuOpen(false)} className="p-2 text-white hover:bg-white/10 rounded-full transition-colors">
               <X size={24} />
             </button>
           </div>
           <div className="p-6 flex flex-col gap-6">
             <div className="relative">
-              <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-3 top-3 h-5 w-5 text-white/50" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search..."
-                className="w-full pl-10 h-12 rounded-xl bg-slate-100 text-base focus:outline-none"
+                className="w-full pl-10 h-12 rounded-xl bg-white/10 text-base text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 transition-all border border-white/5"
               />
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Navigation</h4>
-              <a href="#" className="block text-lg font-bold text-slate-800">Home</a>
-              <a href="#" className="block text-lg font-bold text-slate-800">Popular Perks</a>
-              <a href="#" className="block text-lg font-bold text-slate-800">Categories</a>
-              <a href="#" className="block text-lg font-bold text-slate-800">Saved Items</a>
+              <h4 className="text-xs font-bold text-brand-accent uppercase tracking-wider">Navigation</h4>
+              <a href="#" className="block text-lg font-bold text-white hover:text-brand-accent transition-colors">Home</a>
+              <a href="#" className="block text-lg font-bold text-white hover:text-brand-accent transition-colors">Popular Perks</a>
+              <a href="#" className="block text-lg font-bold text-white hover:text-brand-accent transition-colors">Categories</a>
+              <a href="#" className="block text-lg font-bold text-white hover:text-brand-accent transition-colors">Saved Items</a>
             </div>
           </div>
         </div>
-      )}
     </>
   );
 };
