@@ -3,6 +3,7 @@ import React from 'react';
 import { Product } from '../types';
 import { Heart, Star, Tag, Check } from 'lucide-react';
 import { useGlobal } from '../context/GlobalContext';
+import { useNavigate } from 'react-router-dom';
 
 interface ProductCardProps {
   product: Product;
@@ -10,11 +11,32 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, featured = false }) => {
-  const { likedProducts, toggleLike, claimedProducts, claimProduct } = useGlobal();
+  const { likedProducts, toggleLike, claimedProducts, claimProduct, isAuthenticated, showToast } = useGlobal();
+  const navigate = useNavigate();
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
 
   const isLiked = likedProducts.has(product.id);
   const isClaimed = claimedProducts.has(product.id);
+
+  const handleLike = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!isAuthenticated) {
+      showToast('Please sign in to save perks', 'info');
+      navigate('/login');
+      return;
+    }
+    toggleLike(product.id);
+  };
+
+  const handleClaim = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!isAuthenticated) {
+      showToast('Please sign in to claim perks', 'info');
+      navigate('/login');
+      return;
+    }
+    claimProduct(product.id);
+  };
 
   return (
     <div className={`group relative bg-white rounded-3xl overflow-hidden border border-slate-100 transition-all duration-300 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-2 flex flex-col ${featured ? 'md:col-span-2 md:row-span-2 h-full' : 'h-full'}`}>
@@ -52,7 +74,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, featured = false }) 
 
         {/* Like Button */}
         <button
-          onClick={(e) => { e.stopPropagation(); toggleLike(product.id); }}
+          onClick={handleLike}
           className={`absolute top-4 right-4 p-2.5 backdrop-blur-md rounded-full transition-all shadow-sm ${isLiked ? 'bg-red-50 text-red-500' : 'bg-white/50 text-white hover:bg-white hover:text-red-500'}`}
         >
           <Heart size={18} fill={isLiked ? "currentColor" : "none"} />
@@ -83,7 +105,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, featured = false }) 
             <span className="text-xl font-extrabold text-brand-secondary">₱{product.price.toLocaleString()}</span>
           </div>
           <button
-            onClick={() => claimProduct(product.id)}
+            onClick={handleClaim}
             disabled={isClaimed}
             className={`
               px-4 py-2 rounded-xl font-bold text-sm transition-all flex items-center gap-2

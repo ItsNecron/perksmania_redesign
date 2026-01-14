@@ -13,13 +13,18 @@ interface GlobalContextType {
   setSearchQuery: (query: string) => void;
   activeCategory: string | null;
   setActiveCategory: (categoryId: string | null) => void;
-  
+
   // User Actions
   likedProducts: Set<string>;
   toggleLike: (productId: string) => void;
   claimedProducts: Set<string>;
   claimProduct: (productId: string) => void;
-  
+
+  // Auth State
+  isAuthenticated: boolean;
+  login: () => void;
+  logout: () => void;
+
   // UI Feedback
   toasts: Toast[];
   showToast: (message: string, type?: 'success' | 'info' | 'error') => void;
@@ -33,6 +38,19 @@ export const GlobalProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const [likedProducts, setLikedProducts] = useState<Set<string>>(new Set());
   const [claimedProducts, setClaimedProducts] = useState<Set<string>>(new Set());
   const [toasts, setToasts] = useState<Toast[]>([]);
+
+  // Auth State
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const login = () => {
+    setIsAuthenticated(true);
+    showToast('Welcome back! You are now logged in.', 'success');
+  };
+
+  const logout = () => {
+    setIsAuthenticated(false);
+    showToast('You have been logged out.', 'info');
+  };
 
   const toggleLike = (productId: string) => {
     setLikedProducts(prev => {
@@ -77,6 +95,9 @@ export const GlobalProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       toggleLike,
       claimedProducts,
       claimProduct,
+      isAuthenticated,
+      login,
+      logout,
       toasts,
       showToast
     }}>
