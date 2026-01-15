@@ -17,6 +17,16 @@ import {
   MoreHorizontal 
 } from 'lucide-react';
 
+import travelKoreaImg from './assets/products/travel_korea_winter_1768453826206.png';
+import pizzaComboImg from './assets/products/pizza_combo_meal_1768453841879.png';
+import ledH4Img from './assets/products/led_headlight_h4_1768453857286.png';
+import salonImg from './assets/products/salon_treatment_premium_1768453882438.png';
+import contourImg from './assets/products/beauty_contour_lift_1768453898026.png';
+import pizzaMajorImg from './assets/products/pizza_major_colonel_1768453912878.png';
+import ledH11Img from './assets/products/led_headlight_h11_1768453928529.png';
+import ledHb3Img from './assets/products/led_headlight_hb3_1768453943240.png';
+import ledHb4Img from './assets/products/led_headlight_hb4_1768453957623.png';
+
 export const CATEGORIES: Category[] = [
   { id: 'auto', name: 'Automotive & Motorcycles', icon: <Car size={20} /> },
   { id: 'baby', name: 'Babies & Kids', icon: <Baby size={20} /> },
@@ -41,7 +51,7 @@ export const POPULAR_PERKS: Product[] = [
     category: 'Travel & Leisure',
     price: 42888,
     originalPrice: 46388,
-    image: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=2070&auto=format&fit=crop',
+    image: travelKoreaImg,
     rating: 4.9,
     reviews: 342,
     isHot: true,
@@ -53,7 +63,7 @@ export const POPULAR_PERKS: Product[] = [
     category: 'Restaurant',
     price: 447,
     originalPrice: 566,
-    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop',
+    image: pizzaComboImg,
     rating: 4.7,
     reviews: 128,
     merchant: 'Captain Philippines Pizza',
@@ -64,7 +74,7 @@ export const POPULAR_PERKS: Product[] = [
     category: 'Automotive & Motorcycles',
     price: 7351,
     originalPrice: 8370,
-    image: 'https://images.unsplash.com/photo-1486006920555-c77dcf18193c?q=80&w=2056&auto=format&fit=crop',
+    image: ledH4Img,
     rating: 4.5,
     reviews: 56,
     isNew: true,
@@ -76,7 +86,7 @@ export const POPULAR_PERKS: Product[] = [
     category: 'Health & Beauty',
     price: 950,
     originalPrice: 1400,
-    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop',
+    image: salonImg,
     rating: 4.8,
     reviews: 890,
     merchant: 'Ferdie Ilagan Salon & Spa',
@@ -87,7 +97,7 @@ export const POPULAR_PERKS: Product[] = [
     category: 'Health & Beauty',
     price: 35000,
     originalPrice: 70000,
-    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop',
+    image: contourImg,
     rating: 5.0,
     reviews: 12,
     merchant: 'The Vibe Holistic Medical Aesthetics',
@@ -98,7 +108,7 @@ export const POPULAR_PERKS: Product[] = [
     category: 'Restaurant',
     price: 139,
     originalPrice: 149,
-    image: 'https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?q=80&w=2070&auto=format&fit=crop',
+    image: pizzaMajorImg,
     rating: 4.2,
     reviews: 45,
     merchant: 'Captain Philippines Pizza',
@@ -109,7 +119,7 @@ export const POPULAR_PERKS: Product[] = [
       category: 'Automotive & Motorcycles',
       price: 7695,
       originalPrice: 8100,
-      image: 'https://images.unsplash.com/photo-1503376763036-066120622c74?q=80&w=2070&auto=format&fit=crop',
+      image: ledH11Img,
       rating: 4.6,
       reviews: 23,
       merchant: 'Keon Sondra Corporation',
@@ -123,7 +133,7 @@ export const DAILY_DROPS: Product[] = [
     category: 'Automotive & Motorcycles',
     price: 7695,
     originalPrice: 8100,
-    image: 'https://images.unsplash.com/photo-1619550798150-1e5828c6df32?q=80&w=2070&auto=format&fit=crop',
+    image: ledHb3Img,
     rating: 4.9,
     reviews: 10,
     isHot: true,
@@ -135,7 +145,7 @@ export const DAILY_DROPS: Product[] = [
     category: 'Automotive & Motorcycles',
     price: 7695,
     originalPrice: 8100,
-    image: 'https://images.unsplash.com/photo-1552857096-724d275727e0?q=80&w=1974&auto=format&fit=crop',
+    image: ledHb4Img,
     rating: 4.8,
     reviews: 8,
     merchant: 'Keon Sondra Corporation',
